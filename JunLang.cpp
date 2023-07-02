@@ -36,7 +36,7 @@ int main (int argc, char* argv[]) {
         }
         char buffer[bufferSize];
         ifstream file(fileName);
-        if (!file.is_open() || regex_match(fileName, regex("*.jun", regex::icase))) {
+        if (!file.is_open()) {
             cout << "[Error] File cannot open." << endl;
         }
         while (file.good()) {
