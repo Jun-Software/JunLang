@@ -9,10 +9,21 @@ using namespace std;
 #define _VERSION_ "1.00"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
-    "output"
+    "output",
+    "wrap"
 };
 
 
+struct UnknowIdentifier : public exception {
+    const char * what () const throw () {
+        return "Unknow identifier.";
+    }
+};
+struct FileCannotOpen : public exception {
+    const char * what () const throw () {
+        return "File cannot open.";
+    }
+};
 vector<string> split(string str, char delim) {
     stringstream ss(str);
     string item;
@@ -37,21 +48,30 @@ int main (int argc, char* argv[]) {
         char buffer[bufferSize];
         ifstream file(fileName);
         if (!file.is_open()) {
-            cout << "[Error] File cannot open." << endl;
+            throw FileCannotOpen();
         }
         while (file.good()) {
             file.getline(buffer, sizeof(buffer));
             vector<string> vec(split(string(buffer), ' '));
             for (vector<string>::iterator it = vec.begin(); it != vec.end(); it++) {
+                bool unknow = true;
                 for (int i = 0; i < (sizeof(identifiers) / sizeof(string)); i++) {
-                    if (identifiers[i] != *it) {
-                        if (*(it - 1) == identifiers[0]) {
-                            cout << *it << endl;
-                        }
-                        else {
-                            cout << "[Error] Unknow identifiers: " << *it << endl;
-                        }
+                    if (identifiers[i] == *it) {
+                        unknow = false;
                     }
+                }
+                if (!unknow) {
+                    if (*it == identifiers[0]) {
+                        cout << *(it + 1);
+                        break;
+                    }
+                    if (*it == identifiers[1]) {
+                        cout << endl;
+                    }
+                    // TODO =====================================================================================================
+                }
+                else {
+                    throw UnknowIdentifier();
                 }
             }
         }
