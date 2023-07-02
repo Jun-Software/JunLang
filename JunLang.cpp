@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <regex>
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -35,8 +36,8 @@ int main (int argc, char* argv[]) {
         }
         char buffer[bufferSize];
         ifstream file(fileName);
-        if (!file.is_open()) {
-            cout << "[Error] File cannot open" << endl;
+        if (!file.is_open() || regex_match(fileName, regex("*.jun", regex::icase))) {
+            cout << "[Error] File cannot open." << endl;
         }
         while (file.good()) {
             file.getline(buffer, sizeof(buffer));
@@ -46,6 +47,9 @@ int main (int argc, char* argv[]) {
                     if (identifiers[i] != *it) {
                         if (*(it - 1) == identifiers[0]) {
                             cout << *it << endl;
+                        }
+                        else {
+                            cout << "[Error] Unknow identifiers: " << *it << endl;
                         }
                     }
                 }
