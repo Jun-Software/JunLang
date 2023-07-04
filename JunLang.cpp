@@ -1,12 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
-#include <regex>
+#include <cstring>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "1.00"
+#define _VERSION_ "1.10"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
