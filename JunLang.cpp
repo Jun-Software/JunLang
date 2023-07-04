@@ -136,7 +136,7 @@ int main (int argc, char* argv[]) {
         }
     }
     catch (logic_error) {
-        cout << "JunLang " << _VERSION_ << endl;
+        cout << "JunLang " << 'v' << _VERSION_ << endl;
         cout << "Usage: " << argv[0] << " [filename] <bufferSize>" << endl;
     }
     return 0;
