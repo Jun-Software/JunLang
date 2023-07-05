@@ -5,8 +5,9 @@
 #include <fstream>
 #include <sstream>
 #include <condition_variable>
+#include "modLoader.h"
 using namespace std;
-#define _VERSION_ "1.11"
+#define _VERSION_ "v1.11-b1.0"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
@@ -272,7 +273,7 @@ int main(int argc, char* argv[]) {
         }
     }
     catch (logic_error) {
-        cout << "JunLang " << 'v' << _VERSION_ << endl;
+        cout << "JunLang " << _VERSION_ << endl;
         cout << "Usage: " << argv[0] << " [filename] <bufferSize>" << endl;
     }
     return 0;
