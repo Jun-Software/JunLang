@@ -1,2 +1,2 @@
 # JunLang
-A program language.
+一个编程语言
