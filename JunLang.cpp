@@ -6,16 +6,21 @@
 #include <sstream>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "1.10"
+#define _VERSION_ "1.11"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
     "wrap",
     "new",
-    "set"
+    "set",
+    "input",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division"
 };
 struct Variable {
-    int value;
+    long double value;
     string name;
 };
 
@@ -40,6 +45,7 @@ struct UndeclaredVariable : public exception {
         return "Undeclared variable.";
     }
 };
+
 vector<string> split(string str, char delim) {
     stringstream ss(str);
     string item;
@@ -51,7 +57,17 @@ vector<string> split(string str, char delim) {
     }
     return result;
 }
-int main (int argc, char* argv[]) {
+bool isInteger(string x) {
+    bool integer = true;
+    for (int i = 0; i < strlen(x.c_str()); i++) {
+        if (x[i] < '0' || x[i] > '9') {
+            integer = false;
+            break;
+        }
+    }
+    return integer;
+}
+int main(int argc, char* argv[]) {
     try {
         string fileName = string(argv[1]);
         int bufferSize;
@@ -121,6 +137,126 @@ int main (int argc, char* argv[]) {
                                 variables[i].value = atoi((*(it + 2)).c_str());
                                 undeclared = false;
                                 break;
+                            }
+                        }
+                        if (undeclared) {
+                            throw UndeclaredVariable();
+                        }
+                        break;
+                    }
+                    if (*it == identifiers[4]) {
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                int temp;
+                                cin >> temp;
+                                variables[i].value = temp;
+                                undeclared = false;
+                                break;
+                            }
+                        }
+                        if (undeclared) {
+                            throw UndeclaredVariable();
+                        }
+                        break;
+                    }
+                    if (*it == identifiers[5]) {
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    variables[i].value += atoi((*(it + 2)).c_str());
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            variables[i].value += variables[j].value;
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            throw UndeclaredVariable();
+                        }
+                        break;
+                    }
+                    if (*it == identifiers[6]) {
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    variables[i].value -= atoi((*(it + 2)).c_str());
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            variables[i].value -= variables[j].value;
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            throw UndeclaredVariable();
+                        }
+                        break;
+                    }
+                    if (*it == identifiers[7]) {
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    variables[i].value *= atoi((*(it + 2)).c_str());
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            variables[i].value *= variables[j].value;
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            throw UndeclaredVariable();
+                        }
+                        break;
+                    }
+                    if (*it == identifiers[8]) {
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    variables[i].value /= atoi((*(it + 2)).c_str());
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            variables[i].value /= variables[j].value;
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                         if (undeclared) {
