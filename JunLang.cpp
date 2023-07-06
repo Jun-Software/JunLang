@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include <condition_variable>
-#include "modLoader.h"
 using namespace std;
 #define _VERSION_ "v1.11"
 #define _DEFAULT_BUFFER_SIZE_ 1024
@@ -149,11 +148,21 @@ int main(int argc, char* argv[]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
-                                int temp;
-                                cin >> temp;
-                                variables[i].value = temp;
-                                undeclared = false;
-                                break;
+                                if (isInteger(*(it + 2))) {
+                                    variables[i].value = atoi((*(it + 2)).c_str());
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            variables[i].value = variables[j].value;
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                         if (undeclared) {
