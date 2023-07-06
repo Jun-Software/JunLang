@@ -7,7 +7,7 @@
 #include <condition_variable>
 #include "modLoader.h"
 using namespace std;
-#define _VERSION_ "v1.11-b1.0"
+#define _VERSION_ "v1.11"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
