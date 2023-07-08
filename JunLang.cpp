@@ -17,7 +17,7 @@ string identifiers[] = {
     "addition",
     "subtraction",
     "multiplication",
-    "division"
+    "division" 
 };
 struct Variable {
     long double value;
