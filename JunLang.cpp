@@ -6,7 +6,7 @@
 #include <sstream>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "v1.11"
+#define _VERSION_ "v1.13"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
@@ -22,28 +22,6 @@ string identifiers[] = {
 struct Variable {
     long double value;
     string name;
-};
-
-
-struct UnknowIdentifier : public exception {
-    const char * what () const throw () {
-        return "Unknow identifier.";
-    }
-};
-struct FileCannotOpen : public exception {
-    const char * what () const throw () {
-        return "File cannot open.";
-    }
-};
-struct DuplicateVariableName : public exception {
-    const char * what () const throw () {
-        return "Duplicate variable name.";
-    }
-};
-struct UndeclaredVariable : public exception {
-    const char * what () const throw () {
-        return "Undeclared variable.";
-    }
 };
 
 vector<string> split(string str, char delim) {
@@ -82,7 +60,7 @@ int main(int argc, char* argv[]) {
         int variableCount = 0;
         ifstream file(fileName);
         if (!file.is_open()) {
-            throw FileCannotOpen();
+            cerr << "[ERROR] File cannot open.";
         }
         while (file.good()) {
             file.getline(buffer, sizeof(buffer));
@@ -107,7 +85,7 @@ int main(int argc, char* argv[]) {
                                 }
                             }
                             if (!variable) {
-                                throw UndeclaredVariable();
+                                cerr << "[ERROR] Undeclared variable.\n";
                             }
                         }
                         cout << string(*(it + 1)).substr(1, strlen((*(it + 1)).c_str()) - 2);
@@ -125,12 +103,26 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         if (duplicate) {
-                            throw DuplicateVariableName();
+                            cerr << "[ERROR] Duplicate variable name.\n";
                         }
                         variables[variableCount++].name = *(it + 1);
                         break;
                     }
                     if (*it == identifiers[3]) {
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                variables[i].value = atoi((*(it + 2)).c_str());
+                                undeclared = false;
+                                break;
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    if (*it == identifiers[4]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -152,7 +144,7 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         if (undeclared) {
-                            throw UndeclaredVariable();
+                            cerr << "[ERROR] Undeclared variable.\n";
                         }
                         break;
                     }
@@ -194,7 +186,7 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         if (undeclared) {
-                            throw UndeclaredVariable();
+                            cerr << "[ERROR] Undeclared variable.\n";
                         }
                         break;
                     }
@@ -220,7 +212,7 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         if (undeclared) {
-                            throw UndeclaredVariable();
+                            cerr << "[ERROR] Undeclared variable.\n";
                         }
                         break;
                     }
@@ -246,7 +238,7 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         if (undeclared) {
-                            throw UndeclaredVariable();
+                            cerr << "[ERROR] Undeclared variable.\n";
                         }
                         break;
                     }
@@ -272,13 +264,13 @@ int main(int argc, char* argv[]) {
                             }
                         }
                         if (undeclared) {
-                            throw UndeclaredVariable();
+                            cerr << "[ERROR] Undeclared variable.\n";
                         }
                         break;
                     }
                 }
                 else {
-                    throw UnknowIdentifier();
+                    cerr << "[ERROR] Unknow identifier.\n";
                 }
             }
         }
