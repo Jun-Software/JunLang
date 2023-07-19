@@ -160,7 +160,7 @@ int main(int argc, char* argv[]) {
                             }
 						}
 						if (undeclared) {
-                            throw UndeclaredVariable();
+                            cerr << "[ERROR] Undeclared variable.\n";
                         }
                         break;
                     }
