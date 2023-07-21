@@ -6,7 +6,7 @@
 #include <sstream>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "v1.13"
+#define _VERSION_ "v1.13.2"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
@@ -46,13 +46,13 @@ bool isInteger(string x) {
     return integer;
 }
 int main(int argc, char* argv[]) {
-    try {
+    if (argc >= 2) {
         string fileName = string(argv[1]);
         int bufferSize;
-        try {
+        if (argc == 3) {
             bufferSize = atoi(string(argv[2]).c_str());
         }
-        catch (logic_error) {
+        else {
             bufferSize = _DEFAULT_BUFFER_SIZE_;
         }
         char buffer[bufferSize];
@@ -60,7 +60,8 @@ int main(int argc, char* argv[]) {
         int variableCount = 0;
         ifstream file(fileName);
         if (!file.is_open()) {
-            cerr << "[ERROR] File cannot open.";
+            cerr << "[ERROR] File cannot open.\n";
+            exit(0);
         }
         while (file.good()) {
             file.getline(buffer, sizeof(buffer));
@@ -91,10 +92,10 @@ int main(int argc, char* argv[]) {
                         cout << string(*(it + 1)).substr(1, strlen((*(it + 1)).c_str()) - 2);
                         break;
                     }
-                    if (*it == identifiers[1]) {
+                    else if (*it == identifiers[1]) {
                         cout << endl;
                     }
-                    if (*it == identifiers[2]) {
+                    else if (*it == identifiers[2]) {
                         bool duplicate = false;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -108,7 +109,7 @@ int main(int argc, char* argv[]) {
                         variables[variableCount++].name = *(it + 1);
                         break;
                     }
-                    if (*it == identifiers[3]) {
+                    else if (*it == identifiers[3]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -122,7 +123,7 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     }
-                    if (*it == identifiers[4]) {
+                    else if (*it == identifiers[4]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -148,7 +149,7 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     }
-                    if (*it == identifiers[4]) {
+                    else if (*it == identifiers[4]) {
                     	bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -164,7 +165,7 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     }
-                    if (*it == identifiers[5]) {
+                    else if (*it == identifiers[5]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -190,7 +191,7 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     }
-                    if (*it == identifiers[6]) {
+                    else if (*it == identifiers[6]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -216,7 +217,7 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     }
-                    if (*it == identifiers[7]) {
+                    else if (*it == identifiers[7]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -242,7 +243,7 @@ int main(int argc, char* argv[]) {
                         }
                         break;
                     }
-                    if (*it == identifiers[8]) {
+                    else if (*it == identifiers[8]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -275,7 +276,7 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-    catch (logic_error) {
+    else {
         cout << "JunLang " << _VERSION_ << endl;
         cout << "Usage: " << argv[0] << " [filename] <bufferSize>" << endl;
     }
