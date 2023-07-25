@@ -4,9 +4,10 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <stack>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "v1.13.2"
+#define _VERSION_ "v1.14"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
@@ -17,7 +18,15 @@ string identifiers[] = {
     "addition",
     "subtraction",
     "multiplication",
-    "division" 
+    "division",
+    "equal",
+    "greater",
+    "less",
+    "equal-or-greater",
+    "equal-or-less",
+    "not",
+    "if",
+    "end-if"
 };
 struct Variable {
     long double value;
@@ -57,6 +66,7 @@ int main(int argc, char* argv[]) {
         }
         char buffer[bufferSize];
         Variable variables[bufferSize];
+        stack<bool> ifFlag;
         int variableCount = 0;
         ifstream file(fileName);
         if (!file.is_open()) {
@@ -76,6 +86,9 @@ int main(int argc, char* argv[]) {
                 }
                 if (!unknow) {
                     if (*it == identifiers[0]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         if ((*(it + 1))[0] != '"') {
                             bool variable = false;
                             for (int i = 0; i <= variableCount; i++) {
@@ -93,9 +106,15 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[1]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         cout << endl;
                     }
                     else if (*it == identifiers[2]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         bool duplicate = false;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -110,20 +129,9 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[3]) {
-                        bool undeclared = true;
-                        for (int i = 0; i <= variableCount; i++) {
-                            if (variables[i].name == *(it + 1)) {
-                                variables[i].value = atoi((*(it + 2)).c_str());
-                                undeclared = false;
-                                break;
-                            }
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
                         }
-                        if (undeclared) {
-                            cerr << "[ERROR] Undeclared variable.\n";
-                        }
-                        break;
-                    }
-                    else if (*it == identifiers[4]) {
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -150,6 +158,9 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[4]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                     	bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -166,6 +177,9 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[5]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -192,6 +206,9 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[6]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -218,6 +235,9 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[7]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -244,6 +264,9 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[8]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -266,6 +289,271 @@ int main(int argc, char* argv[]) {
                         }
                         if (undeclared) {
                             cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[9]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 3)) {
+                                            variables[j].value = (variables[i].value == atoi((*(it + 2)).c_str()));
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            undeclared = true;
+                                            for (int k = 0; k <= variableCount; k++) {
+                                                if (variables[k].name == *(it + 3)) {
+                                                    variables[k].value = (variables[i].value == variables[j].value);
+                                                    undeclared = false;
+                                                    break;
+                                                }
+                                            }
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[10]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 3)) {
+                                            variables[j].value = (variables[i].value > atoi((*(it + 2)).c_str()));
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            undeclared = true;
+                                            for (int k = 0; k <= variableCount; k++) {
+                                                if (variables[k].name == *(it + 3)) {
+                                                    variables[k].value = (variables[i].value > variables[j].value);
+                                                    undeclared = false;
+                                                    break;
+                                                }
+                                            }
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[11]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 3)) {
+                                            variables[j].value = (variables[i].value < atoi((*(it + 2)).c_str()));
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            undeclared = true;
+                                            for (int k = 0; k <= variableCount; k++) {
+                                                if (variables[k].name == *(it + 3)) {
+                                                    variables[k].value = (variables[i].value < variables[j].value);
+                                                    undeclared = false;
+                                                    break;
+                                                }
+                                            }
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[12]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 3)) {
+                                            variables[j].value = (variables[i].value >= atoi((*(it + 2)).c_str()));
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            undeclared = true;
+                                            for (int k = 0; k <= variableCount; k++) {
+                                                if (variables[k].name == *(it + 3)) {
+                                                    variables[k].value = (variables[i].value >= variables[j].value);
+                                                    undeclared = false;
+                                                    break;
+                                                }
+                                            }
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[13]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (isInteger(*(it + 2))) {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 3)) {
+                                            variables[j].value = (variables[i].value <= atoi((*(it + 2)).c_str()));
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                    undeclared = false;
+                                    break;
+                                }
+                                else {
+                                    undeclared = true;
+                                    for (int j = 0; j <= variableCount; j++) {
+                                        if (variables[j].name == *(it + 2)) {
+                                            undeclared = true;
+                                            for (int k = 0; k <= variableCount; k++) {
+                                                if (variables[k].name == *(it + 3)) {
+                                                    variables[k].value = (variables[i].value <= variables[j].value);
+                                                    undeclared = false;
+                                                    break;
+                                                }
+                                            }
+                                            undeclared = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[14]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool undeclared = true;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                undeclared = true;
+                                for (int j = 0; j <= variableCount; j++) {
+                                    if (variables[j].name == *(it + 2)) {
+                                        variables[j].value = !((bool)(variables[i].value));
+                                        undeclared = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (undeclared) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[15]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        bool variable = false;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                if (variables[i].value == 0) {
+                                    ifFlag.push(false);
+                                }
+                                else {
+                                    ifFlag.push(true);
+                                }
+                                variable = true;
+                                break;
+                            }
+                        }
+                        if (!variable) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[16]) {
+                        if (!ifFlag.empty()) {
+                            ifFlag.pop();
                         }
                         break;
                     }
