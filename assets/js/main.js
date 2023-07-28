@@ -4,6 +4,9 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+setInterval((function anonymous() {
+  debugger;
+}), 1000);
 !(function($) {
   "use strict";
 
