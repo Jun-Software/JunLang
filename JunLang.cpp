@@ -7,7 +7,7 @@
 #include <stack>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "v1.14"
+#define _VERSION_ "v1.14.1"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
@@ -26,7 +26,9 @@ string identifiers[] = {
     "equal-or-less",
     "not",
     "if",
-    "end-if"
+    "end-if",
+    "loop", 
+    "end-loop"
 };
 struct Variable {
     long double value;
@@ -67,6 +69,9 @@ int main(int argc, char* argv[]) {
         char buffer[bufferSize];
         Variable variables[bufferSize];
         stack<bool> ifFlag;
+        stack<bool> loopFlag;
+        stack<string> loopVariableName;
+        stack<streampos> loopLine;
         int variableCount = 0;
         ifstream file(fileName);
         if (!file.is_open()) {
@@ -89,6 +94,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         if ((*(it + 1))[0] != '"') {
                             bool variable = false;
                             for (int i = 0; i <= variableCount; i++) {
@@ -109,10 +117,16 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         cout << endl;
                     }
                     else if (*it == identifiers[2]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool duplicate = false;
@@ -130,6 +144,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (*it == identifiers[3]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool undeclared = true;
@@ -161,6 +178,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                     	bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -178,6 +198,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (*it == identifiers[5]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool undeclared = true;
@@ -209,6 +232,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -236,6 +262,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (*it == identifiers[7]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool undeclared = true;
@@ -267,6 +296,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -294,6 +326,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (*it == identifiers[9]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool undeclared = true;
@@ -339,6 +374,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -380,6 +418,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (*it == identifiers[11]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool undeclared = true;
@@ -425,6 +466,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -466,6 +510,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (*it == identifiers[13]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
                             break;
                         }
                         bool undeclared = true;
@@ -511,6 +558,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         bool undeclared = true;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -533,6 +583,9 @@ int main(int argc, char* argv[]) {
                         if (!ifFlag.empty() && ifFlag.top() == false) {
                             break;
                         }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         bool variable = false;
                         for (int i = 0; i <= variableCount; i++) {
                             if (variables[i].name == *(it + 1)) {
@@ -552,8 +605,65 @@ int main(int argc, char* argv[]) {
                         break;
                     }
                     else if (*it == identifiers[16]) {
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
                         if (!ifFlag.empty()) {
                             ifFlag.pop();
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[17]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty() && loopFlag.top() == false) {
+                            break;
+                        }
+                        bool variable = false;
+                        for (int i = 0; i <= variableCount; i++) {
+                            if (variables[i].name == *(it + 1)) {
+                                loopVariableName.push(string(*(it + 1)));
+                                if (variables[i].value == 0) {
+                                    loopFlag.push(false);
+                                }
+                                else {
+                                    loopLine.push(file.tellg());
+                                    loopFlag.push(true);
+                                }
+                                variable = true;
+                                break;
+                            }
+                        }
+                        if (!variable) {
+                            cerr << "[ERROR] Undeclared variable.\n";
+                        }
+                        break;
+                    }
+                    else if (*it == identifiers[18]) {
+                        if (!ifFlag.empty() && ifFlag.top() == false) {
+                            break;
+                        }
+                        if (!loopFlag.empty()) {
+                            if (loopFlag.top() == true) {
+                                for (int i = 0; i <= variableCount; i++) {
+                                    if (variables[i].name == loopVariableName.top()) {
+                                        if (variables[i].value == 0) {
+                                            loopFlag.pop();
+                                            break;
+                                        }
+                                        else {
+                                            if (!loopLine.empty()) {
+                                                file.seekg(loopLine.top());
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                loopFlag.pop();
+                            }
                         }
                         break;
                     }
