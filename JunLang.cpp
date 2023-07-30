@@ -650,6 +650,8 @@ int main(int argc, char* argv[]) {
                                     if (variables[i].name == loopVariableName.top()) {
                                         if (variables[i].value == 0) {
                                             loopFlag.pop();
+                                            loopLine.pop();
+                                            loopVariableName.pop();
                                             break;
                                         }
                                         else {
