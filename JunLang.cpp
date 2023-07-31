@@ -9,7 +9,7 @@
 using namespace std;
 #define _VERSION_ "v1.14.1"
 #define _DEFAULT_BUFFER_SIZE_ 1024
-string identifiers[] = {
+const string identifiers[] = {
     "output",
     "wrap",
     "new",
@@ -56,11 +56,11 @@ bool isInteger(string x) {
     }
     return integer;
 }
-int main(int argc, char* argv[]) {
+int main(const int argc, const char* argv[]) {
     if (argc >= 2) {
         string fileName = string(argv[1]);
         int bufferSize;
-        if (argc == 3) {
+        if (argc >= 3) {
             bufferSize = atoi(string(argv[2]).c_str());
         }
         else {
