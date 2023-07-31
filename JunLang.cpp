@@ -6,7 +6,7 @@
 #include <sstream>
 #include <stack>
 using namespace std;
-#define _VERSION_ "v1.14.1"
+#define _VERSION_ "v1.14.2"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 const string identifiers[] = {
     "output",
