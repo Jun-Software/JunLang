@@ -5,7 +5,6 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
-#include <condition_variable>
 using namespace std;
 #define _VERSION_ "v1.14.1"
 #define _DEFAULT_BUFFER_SIZE_ 1024
