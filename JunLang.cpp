@@ -7,6 +7,7 @@
 #include <stack>
 #include <condition_variable>
 using namespace std;
+#pragma GCC optimize(3, "Ofast", "inline")
 #define _VERSION_ "v1.14.2"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
