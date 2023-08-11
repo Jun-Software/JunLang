@@ -7,7 +7,7 @@
 #include <stack>
 #include <condition_variable>
 using namespace std;
-#define _VERSION_ "v1.14.1"
+#define _VERSION_ "v1.14.2"
 #define _DEFAULT_BUFFER_SIZE_ 1024
 string identifiers[] = {
     "output",
@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
         while (file.good()) {
             file.getline(buffer, sizeof(buffer));
             vector<string> vec(split(string(buffer), ' '));
-            for (vector<string>::iterator it = vec.begin(); it != vec.end(); it++) {
+            for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {
                 bool unknow = true;
                 for (int i = 0; i < (sizeof(identifiers) / sizeof(string)); i++) {
                     if (identifiers[i] == *it) {
