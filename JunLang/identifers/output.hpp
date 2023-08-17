@@ -1,5 +1,4 @@
 #include "../init.hpp"
-#include "../const.hpp"
 void output(vector<string>::iterator it) {
     if ((*(it + 1))[0] != '"') {
         bool variable = false;

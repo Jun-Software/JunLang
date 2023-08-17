@@ -1,5 +1,4 @@
 #include "../init.hpp"
-#include "../const.hpp"
 void set(vector<string>::iterator it) {
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {

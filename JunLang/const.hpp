@@ -1,5 +1,5 @@
 #include "init.hpp"
-const string identifiers[] = {
+string identifiers[] = {
     "output",
     "wrap",
     "new",
@@ -25,7 +25,7 @@ struct Variable {
     string name;
 };
 
-inline vector<string> split(string str, char delim) {
+vector<string> split(string str, char delim) {
     stringstream ss(str);
     string item;
     vector<string> result;
@@ -36,7 +36,7 @@ inline vector<string> split(string str, char delim) {
     }
     return result;
 }
-inline bool isInteger(string x) {
+bool isInteger(string x) {
     bool integer = true;
     for (int i = 0; i < strlen(x.c_str()); i++) {
         if (x[i] < '0' || x[i] > '9') {

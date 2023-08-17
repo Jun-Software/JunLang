@@ -1,7 +1,6 @@
 #include "init.hpp"
-#include "const.hpp"
 #include "identifers/identifers.hpp"
-void interpreter(vector<string> vec, ifstream file) {
+void interpreter(vector<string> vec, ifstream &file) {
     for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {
         bool unknow = true;
         for (int i = 0; i < (sizeof(identifiers) / sizeof(string)); i++) {
