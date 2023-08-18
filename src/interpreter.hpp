@@ -1,4 +1,3 @@
-#include "init.hpp"
 #include "identifiers/identifiers.hpp"
 void interpreter(vector<string> vec, ifstream &file) {
     for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {

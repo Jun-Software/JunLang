@@ -1,4 +1,3 @@
-#include "../init.hpp"
 void equal(vector<string>::iterator it) {
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {

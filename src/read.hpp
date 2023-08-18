@@ -1,4 +1,3 @@
-#include "init.hpp"
 #include "interpreter.hpp"
 void read(char* argv[]) {
     string fileName = string(argv[1]);

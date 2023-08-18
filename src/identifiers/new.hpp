@@ -1,4 +1,3 @@
-#include "../init.hpp"
 void _new(vector<string>::iterator it) {
     bool duplicate = false;
     for (int i = 0; i <= variableCount; i++) {

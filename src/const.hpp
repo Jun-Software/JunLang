@@ -1,4 +1,3 @@
-#include "init.hpp"
 string identifiers[] = {
     "output",
     "wrap",
