@@ -8,3 +8,4 @@
 #include "multiplication.hpp"
 #include "division.hpp"
 #include "equal.hpp"
+#include "greater.hpp"

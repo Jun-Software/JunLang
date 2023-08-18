@@ -8,5 +8,5 @@
 #include <condition_variable>
 using namespace std;
 #pragma GCC optimize(3, "Ofast", "inline")
-#define _VERSION_ "v1.14.2"
+#define _VERSION_ "v1.14.3"
 #define _BUFFER_SIZE_ 1024

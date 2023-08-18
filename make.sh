@@ -1,4 +1,4 @@
 sudo apt install g++
-g++ JunLang/main.cpp -static -o JunLang.out
+g++ ./src/main.cpp -static -w -o JunLang.out
 sudo apt install mingw-w64
-x86_64-w64-mingw32-g++ JunLang/main.cpp -static -o JunLang.exe
+x86_64-w64-mingw32-g++ ./src/main.cpp -static -w -o JunLang.exe

@@ -13,5 +13,7 @@ void output(vector<string>::iterator it) {
             cerr << "[ERROR] Undeclared variable.\n";
         }
     }
-    cout << string(*(it + 1)).substr(1, strlen((*(it + 1)).c_str()) - 2);
+    else {
+        cout << string(*(it + 1)).substr(1, strlen((*(it + 1)).c_str()) - 2);
+    }
 }

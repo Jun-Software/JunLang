@@ -10,80 +10,55 @@ void interpreter(vector<string> vec, ifstream &file) {
             }
         }
         if (!unknow) {
-            if (!ifFlag.empty() && ifFlag.top() == false && *it != identifiers[16]) {
+            if (!ifFlag.empty() && ifFlag.top() == false && (*it != identifiers[16])) {
                 break;
             }
-            if (!loopFlag.empty() && loopFlag.top() == false && *it != identifiers[18]) {
+            if (!loopFlag.empty() && loopFlag.top() == false && (*it != identifiers[18])) {
                 break;
             }
             if (*it == identifiers[0]) {
                 output(it);
+                break;
             }
             else if (*it == identifiers[1]) {
                 wrap(it);
+                break;
             }
             else if (*it == identifiers[2]) {
                 _new(it);
+                break;
             }
             else if (*it == identifiers[3]) {
                 set(it);
+                break;
             }
             else if (*it == identifiers[4]) {
                 input(it);
+                break;
             }
             else if (*it == identifiers[5]) {
                 addition(it);
+                break;
             }
             else if (*it == identifiers[6]) {
                 subtraction(it);
+                break;
             }
             else if (*it == identifiers[7]) {
                 multiplication(it);
+                break;
             }
             else if (*it == identifiers[8]) {
                 division(it);
+                break;
             }
             else if (*it == identifiers[9]) {
                 equal(it);
+                break;
             }
             else if (*it == identifiers[10]) {
-                bool undeclared = true;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        if (isInteger(*(it + 2))) {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 3)) {
-                                    variables[j].value = (variables[i].value > atoi((*(it + 2)).c_str()));
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                            undeclared = false;
-                            break;
-                        }
-                        else {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 2)) {
-                                    undeclared = true;
-                                    for (int k = 0; k <= variableCount; k++) {
-                                        if (variables[k].name == *(it + 3)) {
-                                            variables[k].value = (variables[i].value > variables[j].value);
-                                            undeclared = false;
-                                            break;
-                                        }
-                                    }
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (undeclared) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
+                _greater(it);
+                break;
             }
             else if (*it == identifiers[11]) {
                 bool undeclared = true;
@@ -123,6 +98,7 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
+                break;
             }
             else if (*it == identifiers[12]) {
                 bool undeclared = true;
@@ -162,6 +138,7 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
+                break;
             }
             else if (*it == identifiers[13]) {
                 bool undeclared = true;
@@ -201,6 +178,7 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
+                break;
             }
             else if (*it == identifiers[14]) {
                 bool undeclared = true;
@@ -215,10 +193,12 @@ void interpreter(vector<string> vec, ifstream &file) {
                             }
                         }
                     }
+                    break;
                 }
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
+                break;
             }
             else if (*it == identifiers[15]) {
                 bool variable = false;
@@ -237,11 +217,13 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (!variable) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
+                break;
             }
             else if (*it == identifiers[16]) {
                 if (!ifFlag.empty()) {
                     ifFlag.pop();
                 }
+                break;
             }
             else if (*it == identifiers[17]) {
                 bool variable = false;
@@ -252,7 +234,7 @@ void interpreter(vector<string> vec, ifstream &file) {
                             loopFlag.push(false);
                         }
                         else {
-                            loopLine.push(file.tellg());
+                            loopLine.push(file.tellg() - 2);
                             loopFlag.push(true);
                         }
                         variable = true;
@@ -262,6 +244,7 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (!variable) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
+                break;
             }
             else if (*it == identifiers[18]) {
                 if (!loopFlag.empty()) {
@@ -274,7 +257,7 @@ void interpreter(vector<string> vec, ifstream &file) {
                                 }
                                 else {
                                     if (!loopLine.empty()) {
-                                        file.seekg(loopLine.top());
+                                        file.seekg(loopLine.top() - 2);
                                     }
                                     break;
                                 }
@@ -283,10 +266,12 @@ void interpreter(vector<string> vec, ifstream &file) {
                     }
                     else {
                         loopFlag.pop();
+                        loopLine.pop();
+                        loopVariableName.pop();
                     }
                 }
+                break;
             }
-            break;
         }
         else {
             cerr << "[ERROR] Unknow identifier.\n";
