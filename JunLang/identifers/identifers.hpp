@@ -3,3 +3,8 @@
 #include "new.hpp"
 #include "set.hpp"
 #include "input.hpp"
+#include "addition.hpp"
+#include "subtraction.hpp"
+#include "multiplication.hpp"
+#include "division.hpp"
+#include "equal.hpp"
