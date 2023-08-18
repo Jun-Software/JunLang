@@ -1,5 +1,5 @@
 #include "init.hpp"
-#include "identifers/identifers.hpp"
+#include "identifiers/identifiers.hpp"
 void interpreter(vector<string> vec, ifstream &file) {
     for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {
         bool unknow = true;
@@ -10,113 +10,43 @@ void interpreter(vector<string> vec, ifstream &file) {
             }
         }
         if (!unknow) {
-            if (*it == identifiers[0]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
-                output(it);
+            if (!ifFlag.empty() && ifFlag.top() == false && *it != identifiers[16]) {
                 break;
+            }
+            if (!loopFlag.empty() && loopFlag.top() == false && *it != identifiers[18]) {
+                break;
+            }
+            if (*it == identifiers[0]) {
+                output(it);
             }
             else if (*it == identifiers[1]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 wrap(it);
-                break;
             }
             else if (*it == identifiers[2]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 _new(it);
-                break;
             }
             else if (*it == identifiers[3]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 set(it);
-                break;
             }
             else if (*it == identifiers[4]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 input(it);
-                break;
             }
             else if (*it == identifiers[5]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 addition(it);
-                break;
             }
             else if (*it == identifiers[6]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 subtraction(it);
-                break;
             }
             else if (*it == identifiers[7]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 multiplication(it);
-                break;
             }
             else if (*it == identifiers[8]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 division(it);
-                break;
             }
             else if (*it == identifiers[9]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 equal(it);
-                break;
             }
             else if (*it == identifiers[10]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool undeclared = true;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -154,15 +84,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[11]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool undeclared = true;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -200,15 +123,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[12]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool undeclared = true;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -246,15 +162,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[13]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool undeclared = true;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -292,15 +201,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[14]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool undeclared = true;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -317,15 +219,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (undeclared) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[15]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool variable = false;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -342,24 +237,13 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (!variable) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[16]) {
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 if (!ifFlag.empty()) {
                     ifFlag.pop();
                 }
-                break;
             }
             else if (*it == identifiers[17]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
-                if (!loopFlag.empty() && loopFlag.top() == false) {
-                    break;
-                }
                 bool variable = false;
                 for (int i = 0; i <= variableCount; i++) {
                     if (variables[i].name == *(it + 1)) {
@@ -378,12 +262,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                 if (!variable) {
                     cerr << "[ERROR] Undeclared variable.\n";
                 }
-                break;
             }
             else if (*it == identifiers[18]) {
-                if (!ifFlag.empty() && ifFlag.top() == false) {
-                    break;
-                }
                 if (!loopFlag.empty()) {
                     if (loopFlag.top() == true) {
                         for (int i = 0; i <= variableCount; i++) {
@@ -405,8 +285,8 @@ void interpreter(vector<string> vec, ifstream &file) {
                         loopFlag.pop();
                     }
                 }
-                break;
             }
+            break;
         }
         else {
             cerr << "[ERROR] Unknow identifier.\n";
