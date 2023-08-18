@@ -1,8 +1,9 @@
 # JunLang
 
-[English](README.md)
+[English](https://github.com/JunLang-dev/JunLang/blob/master/README.md)
 
-## 介绍
-JunLang是一个基于C++语言的解释性语言。
+JunLang是一种基于C++的解释性语言。
 
-## 特性
+[官网](https://junlang.imjcj.eu.org)
+
+[文档](https://github.com/JunLang-dev/JunLang/wiki)

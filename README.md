@@ -1,7 +1,9 @@
 # JunLang
 
-[中文版](README-zh.md)
+[中文版](https://github.com/JunLang-dev/JunLang/blob/master/README-zh.md)
 
+JunLang is an interpretive language based on C++.
 
-JunLang is a programming language.
+[Website](https://junlang.imjcj.eu.org)
 
+[Docs](https://github.com/JunLang-dev/JunLang/wiki)
