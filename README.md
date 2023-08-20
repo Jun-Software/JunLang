@@ -1,8 +1,9 @@
 # JunLang
-[Windows版本下载（Github线路）](https://github.com/JunLang-dev/JunLang/raw/master/JunLang.exe)
 
-[Windows版本下载（中国大陆加速线路）](https://gh.imjcj.eu.org/https://github.com/JunLang-dev/JunLang/raw/master/JunLang.exe)
+[中文版](https://github.com/JunLang-dev/JunLang/blob/master/README-zh.md)
 
-[Linux版本下载（Github线路）](https://github.com/JunLang-dev/JunLang/raw/master/JunLang.out)
+JunLang is an interpretive language based on C++.
 
-[Linux版本下载（中国大陆加速线路）](https://gh.imjcj.eu.org/https://github.com/JunLang-dev/JunLang/raw/master/JunLang.out)
+[Website](https://junlang.imjcj.eu.org)
+
+[Docs](https://github.com/JunLang-dev/JunLang/wiki)
