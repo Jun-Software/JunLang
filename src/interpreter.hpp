@@ -5,7 +5,6 @@ void interpreter(vector<string> vec, ifstream &file) {
         for (int i = 0; i < (sizeof(identifiers) / sizeof(string)); i++) {
             if (identifiers[i] == *it) {
                 unknow = false;
-                break;
             }
         }
         if (!unknow) {
@@ -17,260 +16,62 @@ void interpreter(vector<string> vec, ifstream &file) {
             }
             if (*it == identifiers[0]) {
                 output(it);
-                break;
             }
             else if (*it == identifiers[1]) {
                 wrap(it);
-                break;
             }
             else if (*it == identifiers[2]) {
                 _new(it);
-                break;
             }
             else if (*it == identifiers[3]) {
                 set(it);
-                break;
             }
             else if (*it == identifiers[4]) {
                 input(it);
-                break;
             }
             else if (*it == identifiers[5]) {
                 addition(it);
-                break;
             }
             else if (*it == identifiers[6]) {
                 subtraction(it);
-                break;
             }
             else if (*it == identifiers[7]) {
                 multiplication(it);
-                break;
             }
             else if (*it == identifiers[8]) {
                 division(it);
-                break;
             }
             else if (*it == identifiers[9]) {
                 equal(it);
-                break;
             }
             else if (*it == identifiers[10]) {
                 _greater(it);
-                break;
             }
             else if (*it == identifiers[11]) {
-                bool undeclared = true;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        if (isInteger(*(it + 2))) {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 3)) {
-                                    variables[j].value = (variables[i].value < atoi((*(it + 2)).c_str()));
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                            undeclared = false;
-                            break;
-                        }
-                        else {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 2)) {
-                                    undeclared = true;
-                                    for (int k = 0; k <= variableCount; k++) {
-                                        if (variables[k].name == *(it + 3)) {
-                                            variables[k].value = (variables[i].value < variables[j].value);
-                                            undeclared = false;
-                                            break;
-                                        }
-                                    }
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (undeclared) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
-                break;
+                _less(it);
             }
             else if (*it == identifiers[12]) {
-                bool undeclared = true;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        if (isInteger(*(it + 2))) {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 3)) {
-                                    variables[j].value = (variables[i].value >= atoi((*(it + 2)).c_str()));
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                            undeclared = false;
-                            break;
-                        }
-                        else {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 2)) {
-                                    undeclared = true;
-                                    for (int k = 0; k <= variableCount; k++) {
-                                        if (variables[k].name == *(it + 3)) {
-                                            variables[k].value = (variables[i].value >= variables[j].value);
-                                            undeclared = false;
-                                            break;
-                                        }
-                                    }
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (undeclared) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
-                break;
+                equal_or_greater(it);
             }
             else if (*it == identifiers[13]) {
-                bool undeclared = true;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        if (isInteger(*(it + 2))) {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 3)) {
-                                    variables[j].value = (variables[i].value <= atoi((*(it + 2)).c_str()));
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                            undeclared = false;
-                            break;
-                        }
-                        else {
-                            undeclared = true;
-                            for (int j = 0; j <= variableCount; j++) {
-                                if (variables[j].name == *(it + 2)) {
-                                    undeclared = true;
-                                    for (int k = 0; k <= variableCount; k++) {
-                                        if (variables[k].name == *(it + 3)) {
-                                            variables[k].value = (variables[i].value <= variables[j].value);
-                                            undeclared = false;
-                                            break;
-                                        }
-                                    }
-                                    undeclared = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (undeclared) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
-                break;
+                equal_or_less(it);
             }
             else if (*it == identifiers[14]) {
-                bool undeclared = true;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        undeclared = true;
-                        for (int j = 0; j <= variableCount; j++) {
-                            if (variables[j].name == *(it + 2)) {
-                                variables[j].value = !((bool)(variables[i].value));
-                                undeclared = false;
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                }
-                if (undeclared) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
-                break;
+                _not(it);
             }
             else if (*it == identifiers[15]) {
-                bool variable = false;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        if (variables[i].value == 0) {
-                            ifFlag.push(false);
-                        }
-                        else {
-                            ifFlag.push(true);
-                        }
-                        variable = true;
-                        break;
-                    }
-                }
-                if (!variable) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
-                break;
+                _if(it);
             }
             else if (*it == identifiers[16]) {
-                if (!ifFlag.empty()) {
-                    ifFlag.pop();
-                }
-                break;
+                end_if(it);
             }
             else if (*it == identifiers[17]) {
-                bool variable = false;
-                for (int i = 0; i <= variableCount; i++) {
-                    if (variables[i].name == *(it + 1)) {
-                        loopVariableName.push(string(*(it + 1)));
-                        if (variables[i].value == 0) {
-                            loopFlag.push(false);
-                        }
-                        else {
-                            loopLine.push(file.tellg() - 2);
-                            loopFlag.push(true);
-                        }
-                        variable = true;
-                        break;
-                    }
-                }
-                if (!variable) {
-                    cerr << "[ERROR] Undeclared variable.\n";
-                }
-                break;
+                loop(it, file);
             }
             else if (*it == identifiers[18]) {
-                if (!loopFlag.empty()) {
-                    if (loopFlag.top() == true) {
-                        for (int i = 0; i <= variableCount; i++) {
-                            if (variables[i].name == loopVariableName.top()) {
-                                if (variables[i].value == 0) {
-                                    loopFlag.pop();
-                                    break;
-                                }
-                                else {
-                                    if (!loopLine.empty()) {
-                                        file.seekg(loopLine.top() - 2);
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        loopFlag.pop();
-                        loopLine.pop();
-                        loopVariableName.pop();
-                    }
-                }
-                break;
+                end_loop(it, file);
             }
+            break;
         }
         else {
             cerr << "[ERROR] Unknow identifier.\n";
