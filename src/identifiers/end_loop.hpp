@@ -1,4 +1,3 @@
-#include "../init.hpp"
 void end_loop(vector<string>::iterator it, ifstream &file) {
     if (!loopFlag.empty()) {
         if (loopFlag.top() == true) {

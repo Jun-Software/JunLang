@@ -1,4 +1,3 @@
-#include "../init.hpp"
 void loop(vector<string>::iterator it, ifstream &file) {
     bool variable = false;
     for (int i = 0; i <= variableCount; i++) {
