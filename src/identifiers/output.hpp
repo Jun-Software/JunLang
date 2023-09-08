@@ -3,7 +3,7 @@ void output(vector<string>::iterator it) {
         bool variable = false;
         for (int i = 0; i <= variableCount; i++) {
             if (variables[i].name == *(it + 1)) {
-                printf("%.2Lf", variables[i].value);
+                printf("%.3Lf", variables[i].value);
                 variable = true;
                 break;
             }
