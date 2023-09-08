@@ -1,4 +1,3 @@
-#include "../init.hpp"
 void loop(vector<string>::iterator it, ifstream &file) {
     bool variable = false;
     for (int i = 0; i <= variableCount; i++) {
@@ -8,7 +7,7 @@ void loop(vector<string>::iterator it, ifstream &file) {
                 loopFlag.push(false);
             }
             else {
-                loopLine.push(file.tellg() - 2);
+                loopLine.push(int(file.tellg()) - 2);
                 loopFlag.push(true);
             }
             variable = true;

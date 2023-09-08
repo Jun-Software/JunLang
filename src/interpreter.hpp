@@ -1,10 +1,14 @@
 #include "identifiers/identifiers.hpp"
 void interpreter(vector<string> vec, ifstream &file) {
     for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {
+        if ((*it) == "") {
+            continue;
+        }
         bool unknow = true;
         for (int i = 0; i < (sizeof(identifiers) / sizeof(string)); i++) {
             if (identifiers[i] == *it) {
                 unknow = false;
+                break;
             }
         }
         if (!unknow) {

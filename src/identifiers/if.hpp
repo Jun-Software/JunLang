@@ -1,4 +1,3 @@
-#include "../init.hpp"
 void _if(vector<string>::iterator it) {
     bool variable = false;
     for (int i = 0; i <= variableCount; i++) {
