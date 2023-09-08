@@ -9,7 +9,7 @@ void end_loop(vector<string>::iterator it, ifstream &file) {
                     }
                     else {
                         if (!loopLine.empty()) {
-                            file.seekg(loopLine.top() - 2);
+                            file.seekg(int(loopLine.top()) - 2);
                         }
                         break;
                     }

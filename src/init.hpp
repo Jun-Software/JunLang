@@ -7,11 +7,11 @@
 #include <stack>
 #include <cmath>
 #include <condition_variable>
+#include <climits>
 using namespace std;
-#pragma GCC optimize(3, "Ofast", "inline")
 #pragma GCC std("c++11")
-const unsigned long long _BUFFER_SIZE_ = (unsigned long long)(pow(2, 25));
 const string _VERSION_ = "v1.14.4";
+const int _BUFFER_SIZE_ = 1024;
 const string identifiers[] = {
     "output",
     "wrap",
