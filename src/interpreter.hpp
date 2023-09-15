@@ -75,6 +75,9 @@ void interpreter(vector<string> vec, ifstream &file) {
             else if (*it == identifiers[18]) {
                 end_loop(it, file);
             }
+            else if (*it == identifiers[19]) {
+                note(it);
+            }
             break;
         }
         else {
