@@ -10,7 +10,7 @@
 #include <climits>
 using namespace std;
 #pragma GCC std("c++11")
-const string _VERSION_ = "v1.14.4";
+const string _VERSION_ = "v1.14.5";
 const int _BUFFER_SIZE_ = 1024;
 const string identifiers[] = {
     "output",
@@ -31,7 +31,8 @@ const string identifiers[] = {
     "if",
     "end-if",
     "loop", 
-    "end-loop"
+    "end-loop",
+    "note"
 };
 struct Variable {
     long double value;
