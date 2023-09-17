@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "JunLang",
-      "description": "JunLang",
+      "description": "This package is the syntax of JunLang.",
       "homepage": "https://junlang.imjcj.eu.org/",
       "releases": [
 				{
