@@ -1,0 +1,19 @@
+{
+	"schema_version": "3.0.0",
+  "packages": [
+    {
+      "name": "JunLang",
+      "description": "JunLang",
+      "homepage": "https://junlang.imjcj.eu.org/",
+      "releases": [
+				{
+					"sublime_text": "*",
+					"platforms": ["osx", "linux", "windows"],
+					"version": "1.0.0",
+					"url": "https://github.com/JunLang-dev/JunLang/raw/master/JunLang.sublime-package",
+					"date": "2023-09-17 13:31:00"
+				}
+			]
+    }
+  ]
+}
