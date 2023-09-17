@@ -9,7 +9,7 @@
 				{
 					"sublime_text": "*",
 					"platforms": ["osx", "linux", "windows"],
-					"version": "1.0.0",
+					"version": "1.14.5",
 					"url": "https://github.com/JunLang-dev/JunLang/raw/master/JunLang.sublime-package",
 					"date": "2023-09-17 13:31:00"
 				}
