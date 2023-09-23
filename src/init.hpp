@@ -10,7 +10,7 @@
 #include <climits>
 using namespace std;
 #pragma GCC std("c++11")
-const string _VERSION_ = "v1.14.5";
+const string _VERSION_ = "v1.14.7";
 const int _BUFFER_SIZE_ = 1024;
 const string identifiers[] = {
     "output",
