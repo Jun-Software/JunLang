@@ -13,6 +13,12 @@ void output(vector<string>::iterator it) {
         }
     }
     else {
-        cout << string(*(it + 1)).substr(1, strlen((*(it + 1)).c_str()) - 2);
+        string result = string(*(it + 1)).substr(1, strlen((*(it + 1)).c_str()) - 2);
+        for (int i = 0; i < result.size(); i++) {
+            if (result[i] == '_') {
+                result[i] = ' ';
+            }
+        }
+        cout << result;
     }
 }
