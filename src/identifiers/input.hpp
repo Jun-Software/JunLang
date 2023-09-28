@@ -9,7 +9,4 @@ void input(vector<string>::iterator it) {
             break;
         }
     }
-    if (undeclared) {
-        cerr << "[ERROR] Undeclared variable.\n";
-    }
 }

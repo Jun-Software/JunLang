@@ -80,8 +80,5 @@ void interpreter(vector<string> vec, ifstream &file) {
             }
             break;
         }
-        else {
-            cerr << "[ERROR] Unknow identifier.\n";
-        }
     }
 }

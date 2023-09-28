@@ -19,7 +19,4 @@ void division(vector<string>::iterator it) {
             }
         }
     }
-    if (undeclared) {
-        cerr << "[ERROR] Undeclared variable.\n";
-    }
 }

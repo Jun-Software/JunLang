@@ -12,7 +12,4 @@ void _if(vector<string>::iterator it) {
             break;
         }
     }
-    if (!variable) {
-        cerr << "[ERROR] Undeclared variable.\n";
-    }
 }
