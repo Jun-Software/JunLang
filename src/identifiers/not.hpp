@@ -13,4 +13,7 @@ void _not(vector<string>::iterator it) {
         }
         break;
     }
+    if (undeclared) {
+        cerr << "[Error] Variable undeclared." << endl;
+    }
 }

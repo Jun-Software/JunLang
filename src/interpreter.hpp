@@ -4,14 +4,14 @@ void interpreter(vector<string> vec, ifstream &file) {
         if ((*it) == "") {
             continue;
         }
-        bool unknow = true;
+        bool unknown = true;
         for (int i = 0; i < (sizeof(identifiers) / sizeof(string)); i++) {
             if (identifiers[i] == *it) {
-                unknow = false;
+                unknown = false;
                 break;
             }
         }
-        if (!unknow) {
+        if (!unknown) {
             if (!ifFlag.empty() && ifFlag.top() == false && (*it != identifiers[16])) {
                 break;
             }
@@ -79,6 +79,9 @@ void interpreter(vector<string> vec, ifstream &file) {
                 note(it);
             }
             break;
+        }
+        else {
+            cerr << "[Error] Unknown identifiers" << endl;
         }
     }
 }
