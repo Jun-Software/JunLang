@@ -3,16 +3,16 @@ void multiplication(vector<string>::iterator it) {
     for (int i = 0; i <= variableCount; i++) {
         if (variables[i].name == *(it + 1)) {
             if (isInteger(*(it + 2))) {
-                variables[i].value *= atoi((*(it + 2)).c_str());
                 undeclared = false;
+                variables[i].value *= atoi((*(it + 2)).c_str());
                 break;
             }
             else {
                 undeclared = true;
                 for (int j = 0; j <= variableCount; j++) {
                     if (variables[j].name == *(it + 2)) {
-                        variables[i].value *= variables[j].value;
                         undeclared = false;
+                        variables[i].value *= variables[j].value;
                         break;
                     }
                 }
@@ -20,6 +20,6 @@ void multiplication(vector<string>::iterator it) {
         }
     }
     if (undeclared) {
-        cerr << "[ERROR] Undeclared variable.\n";
+        cerr << "[Error] Variable undeclared." << endl;
     }
 }

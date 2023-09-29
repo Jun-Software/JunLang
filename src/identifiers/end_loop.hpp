@@ -22,4 +22,7 @@ void end_loop(vector<string>::iterator it, ifstream &file) {
             loopVariableName.pop();
         }
     }
+    else {
+        cerr << "[Error] Much \"end-loop\"." << endl;
+    }
 }

@@ -1,5 +1,5 @@
 void _if(vector<string>::iterator it) {
-    bool variable = false;
+    bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {
         if (variables[i].name == *(it + 1)) {
             if (variables[i].value == 0) {
@@ -8,11 +8,11 @@ void _if(vector<string>::iterator it) {
             else {
                 ifFlag.push(true);
             }
-            variable = true;
+            undeclared = false;
             break;
         }
     }
-    if (!variable) {
-        cerr << "[ERROR] Undeclared variable.\n";
+    if (undeclared) {
+        cerr << "[Error] Variable undeclared." << endl;
     }
 }
