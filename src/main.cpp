@@ -8,7 +8,10 @@ int main(int argc, char* argv[]) {
         fstream f;
         f.open("temp.jun", ios::out);
         while (cout << ">>", getline(cin, str)) {
-            if (str == "%run" || str == "%RUN" || str == "%Run") {
+            if (str[0] != '%') {
+                f << str << endl;
+            }
+            else if (str == "%run" || str == "%RUN" || str == "%Run") {
                 char *file[] = {"", "temp.jun"};
                 read(file);
                 cout << endl;
@@ -18,20 +21,24 @@ int main(int argc, char* argv[]) {
                 filesystem::remove("temp.jun");
                 exit(0);
             }
+            else if (str == "%save" || str == "%SAVE" || str == "%Save") {
+                string filename;
+                cin >> filename;
+                filesystem::remove(filename);
+                filesystem::copy("temp.jun", filename);
+            }
             else if (str == "%clear" || str == "%CLEAR" || str == "%Clear") {
                 f.close();
                 f = fstream();
                 f.open("temp.jun", ios::out);
             }
-            else if (str == "%help" || str == "%HELP" || str == "%Help") {
+            else {
                 cout << "%run\tRun the code in buffer." << endl;
                 cout << "%exit\tExit editor." << endl;
+                cout << "%save <filename>\tSave file." << endl;
                 cout << "%clear\tClear buffer." << endl;
                 cout << "%help\tView this list." << endl;
-                cout << "Code\tPut code to buffer." << endl;
-            }
-            else {
-                f << str << endl;
+                cout << "<code>\tPut code to buffer." << endl;
             }
         }
     }
