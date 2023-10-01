@@ -10,7 +10,7 @@
 #include <filesystem>
 using namespace std;
 #pragma GCC std("c++17")
-const string _VERSION_ = "v1.14.8";
+const string _VERSION_ = "v1.14.9";
 const int _BUFFER_SIZE_ = 1024;
 const string identifiers[] = {
     "output",
