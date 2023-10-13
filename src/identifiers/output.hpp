@@ -1,3 +1,7 @@
+/**
+ * Output function
+ * By lemonorangeapple
+**/
 void output(vector<string>::iterator it) {
     if ((*(it + 1))[0] != '"') {
         bool undeclared = true;

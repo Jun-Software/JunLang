@@ -1,3 +1,7 @@
+/**
+ * Addition function
+ * By lemonorangeapple
+**/
 void addition(vector<string>::iterator it) {
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {
