@@ -7,11 +7,11 @@
 #include <stack>
 #include <cmath>
 #include <condition_variable>
-#include <filesystem>
 using namespace std;
-#pragma GCC std("c++17")
-const string _VERSION_ = "v1.14.9";
+#pragma GCC std("c++11")
+const string _VERSION_ = "v1.14.10";
 const int _BUFFER_SIZE_ = 1024;
+// All identifiers.
 const string identifiers[] = {
     "output",
     "wrap",
@@ -34,11 +34,12 @@ const string identifiers[] = {
     "end-loop",
     "note"
 };
+// Variable struct
 struct Variable {
     long double value;
     string name;
 };
-
+// split function
 vector<string> split(string str, char delim) {
     stringstream ss(str);
     string item;
@@ -50,6 +51,7 @@ vector<string> split(string str, char delim) {
     }
     return result;
 }
+// isInteger function
 bool isInteger(string x) {
     bool integer = true;
     for (int i = 0; i < strlen(x.c_str()); i++) {
@@ -60,6 +62,7 @@ bool isInteger(string x) {
     }
     return integer;
 }
+// Const variables
 char buffer[_BUFFER_SIZE_];
 Variable variables[_BUFFER_SIZE_];
 stack<bool> ifFlag;

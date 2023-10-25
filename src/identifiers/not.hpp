@@ -1,3 +1,7 @@
+/**
+ * Not function
+ * By lemonorangeapple
+**/
 void _not(vector<string>::iterator it) {
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {

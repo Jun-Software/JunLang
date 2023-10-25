@@ -1,3 +1,7 @@
+/**
+ * Loop function
+ * By lemonorangeapple
+**/
 void loop(vector<string>::iterator it, ifstream &file) {
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {
