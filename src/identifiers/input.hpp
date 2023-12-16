@@ -3,8 +3,10 @@
  * By lemonorangeapple
 **/
 void input(vector<string>::iterator it) {
+    // Check if variable is already declared
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {
+        // If variable is found, assign value to it
         if (variables[i].name == *(it + 1)) {
             long double temp;
             cin >> temp;
@@ -13,6 +15,7 @@ void input(vector<string>::iterator it) {
             break;
         }
     }
+    // If variable is not found, throw error
     if (undeclared) {
         cerr << "[Error] Variable undeclared." << endl;
     }

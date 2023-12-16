@@ -1,4 +1,5 @@
 #include "interpreter.hpp"
+// Read from file.
 void read(char* argv[]) {
     // Open file.
     string fileName = string(argv[1]);
@@ -10,7 +11,9 @@ void read(char* argv[]) {
     // Read file.
     while (file.good()) {
         file.getline(buffer, sizeof(buffer));
+        // Split each line.
         vector<string> vec(split(string(buffer), ' '));
+        // Interpret each line.
         interpreter(vec, file);
     }
 }
