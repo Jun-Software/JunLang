@@ -9,7 +9,9 @@
 #include <condition_variable>
 using namespace std;
 #pragma GCC std("c++11")
-const string _VERSION_ = "v1.14.10";
+// Version of the program
+const string _VERSION_ = "v1.14.11";
+// Buffer size
 const int _BUFFER_SIZE_ = 1024;
 // All identifiers.
 const string identifiers[] = {
