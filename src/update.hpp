@@ -21,5 +21,8 @@ string execute(const char *command) {
 }
 
 void update() {
-    string result = execute("curl https://junlang.imjcj.eu.org/VERSION").substr(41);
+    string result = execute("curl -s https://junlang.imjcj.eu.org/VERSION").substr(41);
+    if (result != _VERSION_) {
+        cout << "Warning: Upgrade JunLang: \"https://junlang.imjcj.eu.org\"" << endl;
+    }
 }
