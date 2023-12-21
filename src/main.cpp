@@ -1,6 +1,8 @@
 #include "init.hpp"
 #include "read.hpp"
+#include "update.hpp"
 int main(int argc, char* argv[]) {
+    update();
     // Check if there is a filename.
     if (argc == 1) {
         // Output usage.
