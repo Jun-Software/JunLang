@@ -1,3 +1,7 @@
+/**
+ * Entry function of the program
+ * By lemonorangeapple
+**/
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -10,7 +14,7 @@
 using namespace std;
 #pragma GCC std("c++11")
 // Version of the program
-const string _VERSION_ = "v1.14.11";
+const string _VERSION_ = "v1.14.12";
 // Buffer size
 const int _BUFFER_SIZE_ = 1024;
 // All identifiers.
