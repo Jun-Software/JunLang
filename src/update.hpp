@@ -12,11 +12,10 @@ string execute(const char *command) {
     char result[2048] = {0};
     FILE *ptr;
     strcpy(result, command);
-    if((ptr = popen(result, "r"))) {
+    if ((ptr = popen(result, "r"))) {
         while (fgets(buffer, 2048, ptr)) {
-            strcat(result, buffer);
-            if (strlen(result) > 2048) {
-                break;
+            if (strlen(result) + strlen(buffer) <= 2048) {
+                strcat(result, buffer);
             }
         }
         pclose(ptr);
