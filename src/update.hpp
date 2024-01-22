@@ -8,14 +8,14 @@
 
 // execute external command and store result in result
 string execute(const char *command) {
-    char buffer[1024];
-    char result[1024] = {0};
+    char buffer[2048];
+    char result[2048] = {0};
     FILE *ptr;
     strcpy(result, command);
     if((ptr = popen(result, "r"))) {
-        while (fgets(buffer, 1024, ptr)) {
+        while (fgets(buffer, 2048, ptr)) {
             strcat(result, buffer);
-            if (strlen(result) > 1024) {
+            if (strlen(result) > 2048) {
                 break;
             }
         }
@@ -29,12 +29,9 @@ string execute(const char *command) {
 void update() {
     // get version number from https://junlang.imjcj.eu.org/VERSION
     string result = execute("curl -s https://junlang.imjcj.eu.org/VERSION");
-    #ifdef _WIN32
-        result = result.substr(44);
-    #endif
+    result = result.substr(44);
     // compare version number with _VERSION_
     if (result != _VERSION_ + '\n') {
-        cout << result << endl;
         cout << "Warning: Please update: \"https://junlang.imjcj.eu.org\"" << endl;
     }
     return;
