@@ -2,7 +2,7 @@
  * Output function
  * By lemonorangeapple
 **/
-void output(vector<string>::iterator it) {
+void output(vector<string>::iterator it, ifstream &file) {
     // Check if the next token is a variable
     if ((*(it + 1))[0] != '"') {
         // Check if the variable is undeclared

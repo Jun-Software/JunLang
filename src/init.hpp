@@ -1,5 +1,5 @@
 /**
- * Entry function of the program
+ * Init function of the program
  * By lemonorangeapple
 **/
 #include <iostream>
@@ -11,6 +11,7 @@
 #include <stack>
 #include <cmath>
 #include <condition_variable>
+#include <functional>
 using namespace std;
 #pragma GCC std("c++11")
 // Version of the program

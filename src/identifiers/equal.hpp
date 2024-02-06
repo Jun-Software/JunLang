@@ -2,7 +2,7 @@
  * Equal function
  * By lemonorangeapple
 **/
-void equal(vector<string>::iterator it) {
+void _equal(vector<string>::iterator it, ifstream &file) {
     // Check if the variable is undeclared
     bool undeclared = true;
     // Loop through the variables

@@ -2,7 +2,7 @@
  * Multiplication function
  * By lemonorangeapple
 **/
-void multiplication(vector<string>::iterator it) {
+void multiplication(vector<string>::iterator it, ifstream &file) {
     // Check if the variable is undeclared
     bool undeclared = true;
     // Loop through the variables

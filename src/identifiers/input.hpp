@@ -2,7 +2,7 @@
  * Input function
  * By lemonorangeapple
 **/
-void input(vector<string>::iterator it) {
+void input(vector<string>::iterator it, ifstream &file) {
     // Check if variable is already declared
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {

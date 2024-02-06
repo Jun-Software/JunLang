@@ -1,4 +1,13 @@
+/**
+ * Interpreter function of the program
+ * By lemonorangeapple
+**/
 #include "identifiers/identifiers.hpp"
+void add_function(vector<string>::iterator it, ifstream &file, int num_identifier, function<void(vector<string>::iterator, ifstream &file)> the_function) {
+    if (*it == identifiers[num_identifier]) {
+        (the_function)(it, file);
+    }
+}
 void interpreter(vector<string> vec, ifstream &file) {
     // Read identifiers.
     for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {
@@ -22,85 +31,45 @@ void interpreter(vector<string> vec, ifstream &file) {
                 break;
             }
             // identifier: output
-            if (*it == identifiers[0]) {
-                output(it);
-            }
+            add_function(it, file, 0, output);
             // identifier: wrap
-            else if (*it == identifiers[1]) {
-                wrap(it);
-            }
+            add_function(it, file, 1, wrap);
             // identifier: new
-            else if (*it == identifiers[2]) {
-                _new(it);
-            }
+            add_function(it, file, 2, _new);
             // identifier: set
-            else if (*it == identifiers[3]) {
-                set(it);
-            }
+            add_function(it, file, 3, set);
             // identifier: input
-            else if (*it == identifiers[4]) {
-                input(it);
-            }
+            add_function(it, file, 4, input);
             // identifier: addition
-            else if (*it == identifiers[5]) {
-                addition(it);
-            }
+            add_function(it, file, 5, addition);
             // identifier: subtraction
-            else if (*it == identifiers[6]) {
-                subtraction(it);
-            }
+            add_function(it, file, 6, subtraction);
             // identifier; multiplication
-            else if (*it == identifiers[7]) {
-                multiplication(it);
-            }
+            add_function(it, file, 7, multiplication);
             // identifier: division
-            else if (*it == identifiers[8]) {
-                division(it);
-            }
+            add_function(it, file, 8, division);
             // identifier: equal
-            else if (*it == identifiers[9]) {
-                equal(it);
-            }
+            add_function(it, file, 9, _equal);
             // identifier: greater
-            else if (*it == identifiers[10]) {
-                _greater(it);
-            }
+            add_function(it, file, 10, _greater);
             // identifier: less
-            else if (*it == identifiers[11]) {
-                _less(it);
-            }
+            add_function(it, file, 11, _less);
             // identifier: equal-or-greater
-            else if (*it == identifiers[12]) {
-                equal_or_greater(it);
-            }
+            add_function(it, file, 12, equal_or_greater);
             // identifier: equal-or-less
-            else if (*it == identifiers[13]) {
-                equal_or_less(it);
-            }
+            add_function(it, file, 13, equal_or_less);
             // identifier: not
-            else if (*it == identifiers[14]) {
-                _not(it);
-            }
+            add_function(it, file, 14, _not);
             // identifier: if
-            else if (*it == identifiers[15]) {
-                _if(it);
-            }
+            add_function(it, file, 15, _if);
             // identifier: end-if
-            else if (*it == identifiers[16]) {
-                end_if(it);
-            }
+            add_function(it, file, 16, end_if);
             // identifier: loop
-            else if (*it == identifiers[17]) {
-                loop(it, file);
-            }
+            add_function(it, file, 17, loop);
             // identifier: end-loop
-            else if (*it == identifiers[18]) {
-                end_loop(it, file);
-            }
+            add_function(it, file, 18, end_loop);
             // identifier: note
-            else if (*it == identifiers[19]) {
-                note(it);
-            }
+            add_function(it, file, 19, note);
             break;
         }
         else {

@@ -2,7 +2,7 @@
  * Set function
  * By lemonorangeapple
 **/
-void set(vector<string>::iterator it) {
+void set(vector<string>::iterator it, ifstream &file) {
     // Check if the variable is already declared
     bool undeclared = true;
     for (int i = 0; i <= variableCount; i++) {

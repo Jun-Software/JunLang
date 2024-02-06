@@ -1,3 +1,7 @@
+/**
+ * Read code function
+ * By lemonorangeapple
+**/
 #include "interpreter.hpp"
 // Read from file.
 void read(char* argv[]) {
