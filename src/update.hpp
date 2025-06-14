@@ -27,7 +27,7 @@ string execute(const char *command) {
 // update function
 void update() {
     // get version number from https://junlang.imjcj.eu.org/VERSION
-    string result = execute("curl -s https://junlang.imjcj.eu.org/VERSION");
+    string result = execute("curl -s https://junlang.imjcj.eu.org/VERSION_DEVE");
     result = result.substr(44);
     // compare version number with _VERSION_
     if (result != _VERSION_ + '\n') {
