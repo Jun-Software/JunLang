@@ -2,7 +2,7 @@
  * Less function
  * By lemonorangeapple
 **/
-void _less(vector<string>::iterator it) {
+void _less(vector<string>::iterator it, ifstream &file) {
     // Check if the variable is undeclared
     bool undeclared = true;
     // Loop through all the variables

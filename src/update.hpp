@@ -28,7 +28,7 @@ string execute(const char *command) {
 void update() {
     // get version number from https://junlang.imjcj.eu.org/VERSION
     string result = execute("curl -s https://junlang.imjcj.eu.org/VERSION_DEVE");
-    result = result.substr(44);
+    result = result.substr(49);
     // compare version number with _VERSION_
     if (result != _VERSION_ + '\n') {
         cout << "Warning: Please update: \"https://junlang.imjcj.eu.org\"" << endl;

@@ -1,4 +1,6 @@
-// All identifiers
+#ifndef _IDENTIFIERS_HPP_
+#define _IDENTIFIERS_HPP_
+// Output
 #include "output.hpp"
 // Wrap
 #include "wrap.hpp"
@@ -38,3 +40,4 @@
 #include "end_loop.hpp"
 // Note
 #include "note.hpp"
+#endif

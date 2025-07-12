@@ -2,7 +2,7 @@
  * Greater function
  * By lemonorangeapple
 **/
-void _greater(vector<string>::iterator it) {
+void _greater(vector<string>::iterator it, ifstream &file) {
     // Check if the first variable is undeclared
     bool undeclared = true;
     // Loop through all variables

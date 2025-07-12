@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <map>
 #include <cstring>
 #include <fstream>
 #include <sstream>
@@ -17,29 +18,6 @@ using namespace std;
 const string _VERSION_ = "b1.15.00";
 // Buffer size
 const int _BUFFER_SIZE_ = 1024;
-// All identifiers.
-const string identifiers[] = {
-    "output",
-    "wrap",
-    "new",
-    "set",
-    "input",
-    "addition",
-    "subtraction",
-    "multiplication",
-    "division",
-    "equal",
-    "greater",
-    "less",
-    "equal-or-greater",
-    "equal-or-less",
-    "not",
-    "if",
-    "end-if",
-    "loop", 
-    "end-loop",
-    "note"
-};
 // Variable struct
 struct Variable {
     long double value;

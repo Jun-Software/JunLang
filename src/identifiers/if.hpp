@@ -2,7 +2,7 @@
  * If function
  * By lemonorangeapple
 **/
-void _if(vector<string>::iterator it) {
+void _if(vector<string>::iterator it, ifstream &file) {
     // Check if the variable is undeclared
     bool undeclared = true;
     // Loop through the variables
