@@ -5,10 +5,10 @@
 void _less(vector<string>::iterator it, ifstream &file) {
     string a = *(it + 1), b = *(it + 2), c = *(it + 3);
     if (isInteger(b)) {
-        variables[c] = (variables[a] < b);
+        variables[c] = (variables[a] < atoi(b.c_str()));
     }
     else if (isInteger(a)){
-        variables[c] = (a < variables[b]);
+        variables[c] = (atoi(a.c_str()) < variables[b]);
     }
     else {
         variables[c] = (variables[a] < variables[b]);

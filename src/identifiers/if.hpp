@@ -3,7 +3,7 @@
  * By lemonorangeapple
 **/
 void _if(vector<string>::iterator it, ifstream &file) {
-    if (variables[*(it + 1)].value == 0) {
+    if (variables[*(it + 1)] == 0) {
         // Push false if the variable value is 0
         ifFlag.push(false);
     }

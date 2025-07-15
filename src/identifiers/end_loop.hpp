@@ -10,14 +10,10 @@ void end_loop(vector<string>::iterator it, ifstream &file) {
             if (variables[loopVariableName.top()] == 0) {
                 // Pop loop flag
                 loopFlag.pop();
-                break;
             }
-            else {
-                // Check if loop line is empty
-                if (!loopLine.empty()) {
-                    // Seekg to loop line
-                    file.seekg(int(loopLine.top()) - 2);
-                }
+            else if (!loopLine.empty()) {
+                // Seekg to loop line
+                file.seekg(int(loopLine.top()) - 3);
             }
         }
         else {

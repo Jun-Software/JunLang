@@ -20,13 +20,13 @@ void load() {
     identifiers["equal"] = equal;
     identifiers["greater"] = _greater;
     identifiers["less"] = _less;
-    identifiers["equal_or_greater"] = equal_or_greater;
-    identifiers["equal_or_less"] = equal_or_less;
+    identifiers["equal-or-greater"] = equal_or_greater;
+    identifiers["equal-or-less"] = equal_or_less;
     identifiers["not"] = _not;
     identifiers["if"] = _if;
-    identifiers["end_if"] = end_if;
+    identifiers["end-if"] = end_if;
     identifiers["loop"] = loop;
-    identifiers["end_loop"] = end_loop;
+    identifiers["end-loop"] = end_loop;
     identifiers["note"] = note;
 }
 int main(int argc, char* argv[]) {

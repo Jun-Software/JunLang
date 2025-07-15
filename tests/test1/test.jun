@@ -1,0 +1,31 @@
+output "Hello_world!"
+output "Hello_world!"
+wrap
+output "Hello_world!"
+set a 50
+set a 50
+output a
+input a
+addition a 5
+output a
+input a
+input b
+addition a b
+output a
+input a
+equal a 2 b
+output b
+input a
+input b
+equal a b c
+if c
+output "1"
+end-if
+set a 0
+set b 1
+loop b
+output a
+wrap
+addition a 1
+less a 10 b
+end-loop

@@ -4,8 +4,6 @@
 #include "output.hpp"
 // Wrap
 #include "wrap.hpp"
-// New
-#include "new.hpp"
 // Set
 #include "set.hpp"
 // Input
