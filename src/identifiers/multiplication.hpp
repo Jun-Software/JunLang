@@ -3,37 +3,12 @@
  * By lemonorangeapple
 **/
 void multiplication(vector<string>::iterator it, ifstream &file) {
-    // Check if the variable is undeclared
-    bool undeclared = true;
-    // Loop through the variables
-    for (int i = 0; i <= variableCount; i++) {
-        // Check if the variable is the same as the one in the expression
-        if (variables[i].name == *(it + 1)) {
-            // Check if the value is an integer
-            if (isInteger(*(it + 2))) {
-                // If it is, set undeclared to false and multiply the value
-                undeclared = false;
-                variables[i].value *= atoi((*(it + 2)).c_str());
-                break;
-            }
-            // If it isn't, check if the value is a variable
-            else {
-                // If it is, set undeclared to true and loop through the variables
-                undeclared = true;
-                for (int j = 0; j <= variableCount; j++) {
-                    // Check if the variable is the same as the one in the expression
-                    if (variables[j].name == *(it + 2)) {
-                        // If it is, set undeclared to false and multiply the value
-                        undeclared = false;
-                        variables[i].value *= variables[j].value;
-                        break;
-                    }
-                }
-            }
-        }
+    string next = *(it + 2);
+    string _this = *(it + 1);
+    if (isInteger(next)) {
+        variables[_this] *= atoi((next).c_str());
     }
-    // If the variable is undeclared, print an error message
-    if (undeclared) {
-        cerr << "[Error] Variable undeclared." << endl;
+    else {
+        variables[_this] *= variables[next];
     }
 }

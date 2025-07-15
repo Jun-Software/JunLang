@@ -1,3 +1,7 @@
+/**
+ * Interpreter function of the program
+ * By lemonorangeapple
+**/
 void interpreter(vector<string> vec, ifstream &file) {
     // Read identifiers.
     for (vector<string>::iterator it = vec.begin(); it != vec.end(); ++it) {
