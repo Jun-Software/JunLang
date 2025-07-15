@@ -19,11 +19,6 @@ using namespace std;
 const string _VERSION_ = "b1.15.00";
 // Buffer size
 const int _BUFFER_SIZE_ = 1024;
-// Variable struct
-struct Variable {
-    long double value;
-    string name;
-};
 // split function
 vector<string> split(string str, char delim) {
     stringstream ss(str);
@@ -49,9 +44,7 @@ bool isInteger(string x) {
 }
 // Const variables
 char buffer[_BUFFER_SIZE_];
-Variable variables[_BUFFER_SIZE_];
 stack<bool> ifFlag;
 stack<bool> loopFlag;
 stack<string> loopVariableName;
 stack<streampos> loopLine;
-int variableCount = 0;

@@ -4,13 +4,13 @@
 **/
 #include "init.hpp"
 map <string, void (*)(vector<string>::iterator, ifstream &)> identifiers;
+map <string, long double> variables;
 #include "identifiers/identifiers.hpp"
 #include "read.hpp"
 #include "update.hpp"
 void load() {
     identifiers["output"] = output;
     identifiers["wrap"] = wrap;
-    identifiers["new"] = _new;
     identifiers["set"] = set;
     identifiers["input"] = input;
     identifiers["addition"] = addition;
