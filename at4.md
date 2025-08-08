@@ -4,7 +4,6 @@
 ## 变量与数字运算
 > ### Variables and Numeric Operations
 ```junlang
-new a
 input a
 addition a 5
 output a
@@ -59,8 +58,6 @@ output a
 ## 变量与变量运算
 > ### Variables and Variable Operations
 ```junlang
-new a
-new b
 input a
 input b 
 addition a b

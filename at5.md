@@ -7,9 +7,7 @@
 
 Code:
 ```junlang
-new a
 input a
-new b
 equal a 2 b
 output b
 ```
@@ -66,11 +64,8 @@ output b
 > if judgment
 Code:
 ```junlang
-new a
 input a
-new b
 input b
-new c
 equal a b c
 if c
 output "1"
@@ -109,9 +104,7 @@ end-if
 
 Code:
 ```junlang
-new a
 set a 0
-new b
 set b 1
 loop b
 output a

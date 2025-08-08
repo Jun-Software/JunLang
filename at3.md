@@ -5,7 +5,6 @@
 > ### Variable definition and setting values
 Code: 
 ```junlang
-new a
 set a 50
 ```
 保存编码为ANSI并运行，
@@ -33,7 +32,6 @@ set a 50
 > ### Output the value of variable
 
 ```junlang
-new a
 set a 50
 output a
 ```

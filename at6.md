@@ -1,33 +1,27 @@
 # 开发者文档
 > ## Developer Docs
 
-## 功能添加教程
+首先，Fork仓库(不要选择`Only clone the master branch`选项)，切换至`development`分支
+> At first, fork the repository(Never `Only clone the master branch`), switch to the `development` branch.
+
+## 功能添加
 > ### Functions addition
 
-添加功能仅需修改4个地方：
-> Addition functions only change 4 files:
+添加功能仅需修改这3处：
+> Addition functions only change these 3 files:
 
-1. `src/init.hpp`
+1. `src/identifiers/<Function-Name>.hpp`
 ```cpp
-const string identifiers[] {
-    "output",
-    ...,
-    "<Function-Name>"
-};
+/**
+ * <Function-Name> function
+ * By <Author>
+**/
+void <Replaceable-Function-Name>(vector<string>::iterator it, ifstream &file) {
+    <Function>;
+}
 ```
 
-2. `src/interpreter.hpp`
-```cpp
-        if (!unknow) {
-            // identifier: output
-            add_function(it, file, 0, output);
-            ...
-            // identifier: <Function-Name>
-            add_function(it, file, <Number>, <Function-Name>);
-        }
-```
-
-3. `src/identifiers/identifiers.hpp`
+2. `src/identifiers/identifiers.hpp`
 ```cpp
 // Output
 #include "output.hpp"
@@ -36,21 +30,19 @@ const string identifiers[] {
 #include "<Function-Name>.hpp"
 ```
 
-4. `src/identifiers/<Function-Name>.hpp`
-
+3. `src/main.hpp`
 ```cpp
-/**
- * <Function-Name> function
- * By <Author>
-**/
-void <Function-Name>(vector<string>::iterator it, ifstream &file) {
-    <Function>;
-}
+const string identifiers[] {
+    identifiers["output"] = output;
+    ...
+    identifiers["<Function-Name>"] = <Replaceable-Function-Name>;
+};
 ```
+
 
 ## 编译教程
 > ### Recompile
-编译（必须安装`cmake`和`make`）：
+编译（须`cmake`和`make`）：
 > Compile (Requires `cmake` and `make`):
 ```bash
 cmake .
