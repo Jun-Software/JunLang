@@ -1,8 +1,8 @@
 # 开发者文档
 > ## Developer Docs
 
-首先，Fork仓库(不要选择`Only clone the master branch`选项)，切换至`development`分支
-> At first, fork the repository(Never `Only clone the master branch`), switch to the `development` branch.
+首先，Fork仓库(不要选择`Only fork the master branch`选项)，切换至`development`分支
+> At first, fork the repository(Never `Only fork the master branch`), switch to the `development` branch.
 
 ## 功能添加
 > ### Functions addition
@@ -11,6 +11,7 @@
 > Addition functions only change these 3 files:
 
 1. `src/identifiers/<Function-Name>.hpp`
+
 ```cpp
 /**
  * <Function-Name> function
@@ -22,6 +23,7 @@ void <Replaceable-Function-Name>(vector<string>::iterator it, ifstream &file) {
 ```
 
 2. `src/identifiers/identifiers.hpp`
+
 ```cpp
 // Output
 #include "output.hpp"
@@ -31,6 +33,7 @@ void <Replaceable-Function-Name>(vector<string>::iterator it, ifstream &file) {
 ```
 
 3. `src/main.hpp`
+
 ```cpp
 const string identifiers[] {
     identifiers["output"] = output;
