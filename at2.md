@@ -6,7 +6,7 @@
 
 Code:
 ```junlang
-output "Hello_world!"
+output "Hello world!"
 ```
 保存为后缀是.jun的文件，编码为ANSI，并使用`JunLang.exe <文件名>`运行，
 > Save as a file with the suffix .jun, encode it as ANSI, and run it using `JunLang.exe <file name>`,
@@ -20,28 +20,20 @@ output "Hello_world!"
 
 输出：`Hello world!`
 
-> Output: `Hello_world!`
+> Output: `Hello world!`
 <br/>
 <br/>
 <br/>
 <br/>
-
-**注意：**
-
-> **Warning:**
-
-**`Hello`和`world!`之间不是空格，是`_`，**
-
-> **There is a `_` between `Hello` and `world!`**
 
 ## 输出多行文本
 > ### Output multi lines text
 
 Code:
 ```junlang
-output "Hello_world!"
+output "Hello world!"
 wrap
-output "Hello_world!"
+output "Hello world!"
 ```
 保存编码为ANSI并运行，
 > Save as a file, encode it as ANSI, and run it.
