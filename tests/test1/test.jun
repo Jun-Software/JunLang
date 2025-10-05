@@ -1,7 +1,7 @@
-output "Hello_world!"
-output "Hello_world!"
+output "Hello world!"
+output "Hello world!"
 wrap
-output "Hello_world!"
+output "Hello world!"
 set a 50
 set a 50
 output a
