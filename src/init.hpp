@@ -16,7 +16,7 @@
 using namespace std;
 #pragma GCC std("c++11")
 // Version of the program
-const string _VERSION_ = "v1.15.00";
+const string _VERSION_ = "v1.16.00";
 // Buffer size
 const int _BUFFER_SIZE_ = 1024;
 // split function

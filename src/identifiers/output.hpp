@@ -10,14 +10,14 @@ void output(vector<string>::iterator it, ifstream &file) {
     }
     // If the next token is a string, print the string
     else {
-        string result = string(_this.substr(1, strlen(_this.c_str()) - 2));
-        // Replace underscores with spaces
-        for (int i = 0; i <= result.size(); i++) {
-            if (result[i] == '_') {
-                cout << ' ';
-                continue;
+        string result = _this;
+        for (int index = 2; ; index++) {
+            if (result[result.length() - 1] == '"') {
+                cout << result.substr(1, result.length() - 2);
+                return;
             }
-            cout << result[i];
+            string __this = *(it + index);
+            result += (" " + __this);
         }
     }
 }
