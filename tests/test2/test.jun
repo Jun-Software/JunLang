@@ -1,0 +1,12 @@
+output "0"
+wrap
+func helloworld
+output "Hello World"
+wrap
+end-func helloworld
+output "1"
+wrap
+output "2"
+wrap
+use func helloworld
+output "3"

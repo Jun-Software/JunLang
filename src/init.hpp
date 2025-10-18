@@ -16,7 +16,7 @@
 using namespace std;
 #pragma GCC std("c++11")
 // Version of the program
-const string _VERSION_ = "b1.15.00";
+const string _VERSION_ = "b1.17.00";
 // Buffer size
 const int _BUFFER_SIZE_ = 1024;
 // split function
@@ -46,5 +46,9 @@ bool isInteger(string x) {
 char buffer[_BUFFER_SIZE_];
 stack<bool> ifFlag;
 stack<bool> loopFlag;
+stack<bool> funcFlag;
+map<string, int> funcStartMap;
+map<string, int> funcEndMap;
+map<string, int> funcUseMap;
 stack<string> loopVariableName;
 stack<streampos> loopLine;

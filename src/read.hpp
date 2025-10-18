@@ -6,6 +6,7 @@
 // Read from file.
 void read(char* argv[]) {
     // Open file.
+    bool funcReadFlag = false;
     string fileName = string(argv[1]);
     ifstream file(fileName);
     if (!file.is_open()) {
@@ -17,6 +18,19 @@ void read(char* argv[]) {
         file.getline(buffer, sizeof(buffer));
         // Split each line.
         vector<string> vec(split(string(buffer), ' '));
+        if (funcReadFlag) {
+            if ((*vec.begin()) != "end-func") {
+                continue;
+            }
+            else {
+                funcReadFlag = false;
+            }
+        }
+        if ((*vec.begin()) == "func") {
+            interpreter(vec, file);
+            funcReadFlag = true;
+            continue;
+        }
         // Interpret each line.
         interpreter(vec, file);
     }

@@ -28,6 +28,9 @@ void load() {
     identifiers["loop"] = loop;
     identifiers["end-loop"] = end_loop;
     identifiers["note"] = note;
+    identifiers["use"] = _use;
+    identifiers["func"] = func;
+    identifiers["end-func"] = end_func;
 }
 int main(int argc, char* argv[]) {
     // Check if there is a filename.

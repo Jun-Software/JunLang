@@ -30,12 +30,15 @@
 #include "not.hpp"
 // If
 #include "if.hpp"
-// End If
 #include "end_if.hpp"
 // Loop
 #include "loop.hpp"
-// End Loop
 #include "end_loop.hpp"
 // Note
 #include "note.hpp"
+// Func
+#include "use.hpp"
+#include "func.hpp"
+#include "end_func.hpp"
+
 #endif
