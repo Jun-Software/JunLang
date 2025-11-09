@@ -33,5 +33,13 @@ void read(char* argv[]) {
         }
         // Interpret each line.
         interpreter(vec, file);
+        if (!fileRun.empty()) {
+            const char* file_top = fileRun.top().c_str();
+            fileRun.pop();
+            char* file_top_tmp = new char[_BUFFER_SIZE_];
+            strcpy(file_top_tmp, file_top);
+            char* argv_tmp[] = {"", file_top_tmp};
+            read(argv_tmp);
+        }
     }
 }

@@ -3,7 +3,8 @@
  * By lemonorangeapple
 **/
 void end_func(vector<string>::iterator it, ifstream &file) {
-    string next = *(it + 1);
+    string next = funcName.top();
+    funcName.pop();
     if (funcFlag.empty()) {
         file.seekg(int(funcUseMap[next]));
     }
